@@ -153,7 +153,7 @@ All 15 data tests pass: not-null checks across every dimension's primary key, un
 ## 📁 Repository Structure
 
 ```
-netflix_2/
+Movie-lens/
 ├── dbt_project.yml              # Project config, model materialization defaults
 ├── packages.yml                 # dbt_utils dependency
 ├── package-lock.yml
