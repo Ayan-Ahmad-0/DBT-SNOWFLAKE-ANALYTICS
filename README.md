@@ -6,7 +6,7 @@ A dimensional analytics project built with **dbt** on **Snowflake**, transformin
 
 ---
 
-## 📋 Overview
+## Overview
 
 This project transforms raw MovieLens data — movies, ratings, tags, and genome (tag-relevance) scores — landed in **Amazon S3** and loaded into Snowflake, into a clean, tested, analytics-ready dimensional model. It:
 
@@ -22,7 +22,7 @@ This mirrors how a real analytics team turns raw, unmodeled event/rating data in
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 **Amazon S3 (raw CSVs)** → **Snowflake External Stage / `COPY INTO`** → **Raw Tables** → **Staging (`src_*`)** → **Dimensions & Facts** → **Mart** → **BI / Analysis**
 
@@ -58,7 +58,7 @@ This mirrors how a real analytics team turns raw, unmodeled event/rating data in
 
 ---
 
-## 📊 Project Statistics
+## Project Statistics
 
 | Metric | Count |
 |---|---|
@@ -69,12 +69,12 @@ This mirrors how a real analytics team turns raw, unmodeled event/rating data in
 | Analyses | 5 |
 | Data tests | 15 |
 | Macros | 662 (incl. dbt_utils package macros) |
-| Test result | ✅ 15/15 PASS · 0 WARN · 0 ERROR · 0 SKIP |
+| Test result | 15/15 PASS · 0 WARN · 0 ERROR · 0 SKIP |
 | Test runtime | 9.85s |
 
 ---
 
-## 📊 dbt Lineage / Docs Output
+## dbt Lineage / Docs Output
 
 ![dbt Lineage Graph](Movie-lens/Assets/dbt-dag.png)
 
@@ -84,7 +84,7 @@ The graph shows the full flow: raw Snowflake source tables (green) → staging m
 
 ---
 
-## 🔄 Model Flow (dbt DAG)
+## Model Flow (dbt DAG)
 
 ```
 Amazon S3 (raw MovieLens CSVs)
@@ -116,7 +116,7 @@ Incremental logic on `fct_ratings` only pulls rows with a `rating_timestamp` new
 
 ---
 
-## 🗂️ Model & Table Reference
+## Model & Table Reference
 
 | Model                    | Layer      | Description                                                                 |
 | ------------------------- | ---------- | ----------------------------------------------------------------------------- |
@@ -135,7 +135,7 @@ Incremental logic on `fct_ratings` only pulls rows with a `rating_timestamp` new
 
 ---
 
-## ✅ Data Validation & Testing
+## Data Validation & Testing
 
 - **Not-null / uniqueness tests** on primary keys (`movie_id`, `user_id`, `tag_id`) across every dimension
 - **Relationship tests** — `fct_ratings.movie_id` and `fct_genome_scores.movie_id`/`tag_id` are validated against their parent dimensions to catch orphaned foreign keys
@@ -150,7 +150,7 @@ All 15 data tests pass: not-null checks across every dimension's primary key, un
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 Movie-lens/
@@ -197,7 +197,7 @@ Movie-lens/
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 The project connects to Snowflake via a dbt `profiles.yml` (kept outside version control). Set up your profile with:
 
@@ -231,7 +231,7 @@ COPY INTO MOVIELENS.RAW.RAW_MOVIES
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ```bash
 # Clone the repo
@@ -271,7 +271,7 @@ dbt docs serve
 
 ---
 
-## 🛠️ Future Improvements
+## Future Improvements
 
 - Add a CI workflow (GitHub Actions) to run `dbt build` and `dbt test` on every PR
 - Expand test coverage with `dbt-expectations` for distribution-based checks
